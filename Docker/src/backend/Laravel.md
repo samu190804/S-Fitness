@@ -7,3 +7,5 @@ composer create-project laravel/laravel laravel-crud-api
 php artisan serve
 
 php artisan install:api
+
+sudo docker exec -it php_app php artisan migrate
