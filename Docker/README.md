@@ -14,8 +14,15 @@
         sudo docker compose up -d
     ```
 
-## 1. PHPMyAdmin
+## 1. Servicios
 
-Usuario inicial: root
-Contraseña inicial: root
+### 1.1 PHPMyAdmin
+
+* Ruta: http://localhost:8081
+* Usuario inicial: root
+* Contraseña inicial: root
+
+### 1.2 PHPapp
+
+* Ruta: http://localhost:8080
 
