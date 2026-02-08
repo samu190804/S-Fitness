@@ -36,9 +36,9 @@ Route::post('/InsertExer', function () {
 });
 
 Route::delete('/DeleteExer/{id}', function () {
-    return 'Exer Created';
+    return 'Exer Deleted';
 })
 
 ;Route::delete('/DeleteRoutine/{id}', function () {
-    return 'Routine Created';
+    return 'Routine Deleted';
 });
