@@ -31,6 +31,10 @@
     ```bash
         sudo docker exec -it php_app bash -c "composer update && composer install && php artisan key:generate"
     ``` 
+* Ejecutar Apache
+    ```
+        sudo docker exec -it php_app php artisan serve
+    ```
 * Migrar Base de datos
     ```
         sudo docker exec -it php_app php artisan migrate
