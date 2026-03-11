@@ -32,11 +32,11 @@
         sudo docker exec -it php_app bash -c "composer update && composer install && php artisan key:generate"
     ``` 
 * Ejecutar Apache
-    ```
+    ```bash
         sudo docker exec -it php_app php artisan serve
     ```
 * Migrar Base de datos
-    ```
+    ```bash
         sudo docker exec -it php_app php artisan migrate
     ```
 
@@ -53,14 +53,18 @@
 * Ruta: http://localhost:8080
 
 * En el caso de nobara hacen falta estos paquetes ademas de php
-```
+```bash
     sudo dnf install php-cli php-zip php-xml php-mbstring php-gd php-curl php-mysqlnd php-intl -y
 ```
 * Crear proyecto con composer
-```
+```bash
     composer create-project laravel/laravel laravel-crud-api  
 
     php artisan install:api
 
-    php artisan serve
+    <!--Ejecutar para instalar dependencias proyecto-->
+
+    composer install
+
+    php artisan serve --port=8080
 ```
