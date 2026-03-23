@@ -68,3 +68,19 @@
 
     php artisan serve --port=8080
 ```
+# Crear controlador
+```bash
+    php artisan make:controller EjercicioController
+```
+# Crear modelo con migración
+```bash
+    php artisan make:model Ejercicio -m
+```
+# Crear service
+```bash
+    php artisan make:service ArchivoService
+```
+# Crear Form Request (para validaciones)
+```bash
+    php artisan make:request UpdateUserRequest
+```
