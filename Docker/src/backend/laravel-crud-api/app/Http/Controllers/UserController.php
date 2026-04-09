@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Container\Attributes\Storage;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -69,7 +69,7 @@ class UserController extends Controller
     }
 
     /**
-     * actualiza un usuario específico por su ID.
+     * Actualiza un usuario específico por su ID.
      */
     public function update(UpdateUserRequest $request, $id)
     {
