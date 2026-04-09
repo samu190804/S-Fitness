@@ -39,7 +39,18 @@
     ```bash
         sudo docker exec -it php_app php artisan migrate
     ```
-
+* Migrar Base de datos reemplazo
+    ```bash
+        sudo docker exec -it php_app php artisan migrate:fresh
+    ```
+* Configuración de Storage
+    ```bash
+        sudo docker exec -it php_app php artisan storage:link
+    ```
+* Crea Request para validación
+    ```bash
+        sudo docker exec -it php_app php artisan make:request StoreUserRequest
+    ```
 ## 1. Servicios
 
 ### 1.1 PHPMyAdmin

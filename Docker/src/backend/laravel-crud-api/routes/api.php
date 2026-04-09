@@ -2,43 +2,32 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ExerciseController;
+use App\Http\Controllers\RoutineController;
 
 // Route::get('/user', function (Request $request) {
 //    return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::get('/', function () {
-    return 'Starter Query';
-});
+// Users
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'store']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
-Route::get('/filter/{filters}', function ($filters) {
-    return "Filtro aplicado: " . $filters;
-});
+// Exercises
+Route::get('/exercises', [ExerciseController::class, 'index']);
+Route::get('/exercises/filter', [ExerciseController::class, 'filter']);
+Route::get('/exercises/routine/{codR}', [ExerciseController::class, 'ejerciciosDeRutina']);
+Route::post('/exercises', [ExerciseController::class, 'store']);
+Route::put('/exercises/{id}', [ExerciseController::class, 'update']);
+Route::delete('/exercises/{id}', [ExerciseController::class, 'destroy']);
 
-Route::get('/ExerRoutine', function () {
-    return 'Exercises from Routines';
-});
-
-Route::post('/InsertUser', function () {
-    return 'User Created';
-});
-
-Route::put('/UpdateUser/{id}', function () {
-    return 'User Updated';
-});
-
-Route::post('/InsertExer', function () {
-    return 'Exer Created';
-})
-
-;Route::post('/InsertRoutine', function () {
-    return 'Routine Created';
-});
-
-Route::delete('/DeleteExer/{id}', function () {
-    return 'Exer Deleted';
-})
-
-;Route::delete('/DeleteRoutine/{id}', function () {
-    return 'Routine Deleted';
-});
+// Routines
+Route::get('/routines', [RoutineController::class, 'index']);
+Route::get('/routines/{id}', [RoutineController::class, 'show']);
+Route::post('/routines', [RoutineController::class, 'store']);
+Route::put('/routines/{id}', [RoutineController::class, 'update']);
+Route::delete('/routines/{id}', [RoutineController::class, 'destroy']);

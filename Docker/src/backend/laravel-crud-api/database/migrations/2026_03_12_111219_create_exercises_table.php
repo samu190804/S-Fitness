@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('CodU');
             $table->timestamps();
 
-            $table->foreign('CodU')->references('CodU')->on('usuarios')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('CodU')->references('CodU')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
