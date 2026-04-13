@@ -156,4 +156,17 @@ class ExerciseController extends Controller
             'data' => $ejercicios
         ]);
     }
+
+        /**
+     * Obtiene todas los ejercicios de un usuario específico por su CodU.
+     */
+    public function porUsuario($codU)
+    {
+        $exercises = Exercise::where('CodU', $codU)->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $exercises
+        ]);
+    }
 }

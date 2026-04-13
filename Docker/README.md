@@ -95,3 +95,7 @@
 ```bash
     php artisan make:request UpdateUserRequest
 ```
+# Verificar que todas las rutas
+```bash
+    php artisan route:list
+```
