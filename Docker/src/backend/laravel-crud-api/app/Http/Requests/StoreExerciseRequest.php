@@ -20,7 +20,7 @@ class StoreExerciseRequest extends FormRequest
             'Repeticiones' => 'required|integer|min:1',
             'Descripcion' => 'required|string',
             'Video' => 'required|string',
-            'CodU' => 'required|exists:usuarios,CodU'
+            'CodU' => 'required|exists:users,CodU'
         ];
     }
 

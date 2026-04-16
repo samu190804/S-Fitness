@@ -110,8 +110,8 @@ class ExerciseController extends Controller
     public function filter(Request $request) 
     {
         $query = Exercise::query()
-            ->join('usuarios', 'usuarios.CodU', '=', 'exercises.CodU')
-            ->select('exercises.*', 'usuarios.Name as UserName');
+            ->join('users', 'users.CodU', '=', 'exercises.CodU')
+            ->select('exercises.*', 'users.Name as UserName');
 
         if ($request->has('Qnombre')) {
             $query->where('exercises.Name', 'like', '%' . $request->Qnombre . '%');
@@ -145,10 +145,10 @@ class ExerciseController extends Controller
     public function ejerciciosDeRutina($codR) 
     {
         $ejercicios = Exercise::query()
-            ->join('usuarios', 'usuarios.CodU', '=', 'exercises.CodU')
+            ->join('users', 'users.CodU', '=', 'exercises.CodU')
             ->join('routines_exercises', 'routines_exercises.CodE', '=', 'exercises.CodE')
             ->where('routines_exercises.CodR', $codR)
-            ->select('exercises.*', 'usuarios.Name as UserName')
+            ->select('exercises.*', 'users.Name as UserName')
             ->get();
 
         return response()->json([

@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-     protected $table = 'usuarios';
+    protected $table = 'users';
     protected $primaryKey = 'CodU';
     public $incrementing = true;
     protected $keyType = 'int';

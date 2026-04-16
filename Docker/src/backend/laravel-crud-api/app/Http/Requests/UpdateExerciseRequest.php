@@ -22,7 +22,7 @@ class UpdateExerciseRequest extends FormRequest
             'Repeticiones' => 'sometimes|required|integer|min:1',
             'Descripcion' => 'sometimes|required|string',
             'Video' => 'sometimes|required|string',
-            'CodU' => 'sometimes|required|exists:usuarios,CodU'
+            'CodU' => 'sometimes|required|exists:users,CodU'
         ];
     }
 

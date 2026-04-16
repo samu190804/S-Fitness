@@ -20,7 +20,7 @@ class StoreRoutineRequest extends FormRequest
             'Nivel' => 'required|string|in:principiante,intermedio,avanzado',
             'Musculos' => 'required|string|max:255',
             'Descripcion' => 'required|string',
-            'CodU' => 'required|exists:usuarios,CodU',
+            'CodU' => 'required|exists:users,CodU',
             'ejercicios' => 'nullable|array',
             'ejercicios.*' => 'integer|exists:exercises,CodE'
         ];

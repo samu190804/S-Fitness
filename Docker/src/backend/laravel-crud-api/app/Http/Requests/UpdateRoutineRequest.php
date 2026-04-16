@@ -22,7 +22,7 @@ class UpdateRoutineRequest extends FormRequest
             'Nivel' => 'sometimes|required|string|in:principiante,intermedio,avanzado',
             'Musculos' => 'sometimes|required|string|max:255',
             'Descripcion' => 'sometimes|required|string',
-            'CodU' => 'sometimes|required|exists:usuarios,CodU',
+            'CodU' => 'sometimes|required|exists:users,CodU',
             'ejercicios' => 'nullable|array',
             'ejercicios.*' => 'integer|exists:exercises,CodE'
         ];

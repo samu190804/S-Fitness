@@ -25,8 +25,8 @@ class UpdateUserRequest extends FormRequest
         
         return [
             'Name' => 'sometimes|required|string|max:50',
-            'UserName' => 'sometimes|required|string|max:50|unique:usuarios,UserName,' . $userId . ',CodU',
-            'Email' => 'sometimes|required|email|max:100|unique:usuarios,Email,' . $userId . ',CodU',
+            'UserName' => 'sometimes|required|string|max:50|unique:users,UserName,' . $userId . ',CodU',
+            'Email' => 'sometimes|required|email|max:100|unique:users,Email,' . $userId . ',CodU',
             'Password' => 'sometimes|required|string|min:8',
             'admin' => 'boolean',
             'Img' => 'nullable|string|max:500'

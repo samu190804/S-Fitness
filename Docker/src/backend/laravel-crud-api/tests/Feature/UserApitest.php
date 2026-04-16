@@ -13,11 +13,11 @@ class UserApiTest extends TestCase
     use RefreshDatabase;
 
     /**
-     * Test 1: Obtener lista de usuarios
+     * Test 1: Obtener lista de users
      */
     public function test_can_get_all_users(): void
     {
-        // Crear usuarios de prueba
+        // Crear users de prueba
         User::factory()->count(3)->create();
 
         // Hacer petición GET
@@ -78,7 +78,7 @@ class UserApiTest extends TestCase
                  ]);
 
         // Verificar que se creó en BD
-        $this->assertDatabaseHas('usuarios', [
+        $this->assertDatabaseHas('users', [
             'email' => 'newuser@example.com',
             'userName' => 'newuser'
         ]);
@@ -130,7 +130,7 @@ class UserApiTest extends TestCase
                      'message' => 'Usuario actualizado correctamente'
                  ]);
 
-        $this->assertDatabaseHas('usuarios', [
+        $this->assertDatabaseHas('users', [
             'CodU' => 456,
             'name' => 'Updated Name',
             'email' => 'updated@example.com'
@@ -152,7 +152,7 @@ class UserApiTest extends TestCase
                      'message' => 'Usuario eliminado correctamente'
                  ]);
 
-        $this->assertDatabaseMissing('usuarios', ['CodU' => 789]);
+        $this->assertDatabaseMissing('users', ['CodU' => 789]);
     }
 
     /**
