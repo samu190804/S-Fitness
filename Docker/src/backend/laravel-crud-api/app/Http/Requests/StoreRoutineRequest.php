@@ -16,8 +16,8 @@ class StoreRoutineRequest extends FormRequest
         return [
             'Name' => 'required|string|max:100',
             'Dias' => 'required|integer|min:1|max:7',
-            'Duracion' => 'required|string|max:50',
-            'Nivel' => 'required|string|in:principiante,intermedio,avanzado',
+            'Duracion' => 'required|integer',
+            'Nivel' => 'required|integer|in:0,1,2',
             'Musculos' => 'required|string|max:255',
             'Descripcion' => 'required|string',
             'CodU' => 'required|exists:users,CodU',

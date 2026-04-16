@@ -18,8 +18,8 @@ class UpdateRoutineRequest extends FormRequest
         return [
             'Name' => 'sometimes|required|string|max:100',
             'Dias' => 'sometimes|required|integer|min:1|max:7',
-            'Duracion' => 'sometimes|required|string|max:50',
-            'Nivel' => 'sometimes|required|string|in:principiante,intermedio,avanzado',
+            'Duracion' => 'sometimes|required|integer',
+            'Nivel' => 'sometimes|required|integer|in:0,1,2',
             'Musculos' => 'sometimes|required|string|max:255',
             'Descripcion' => 'sometimes|required|string',
             'CodU' => 'sometimes|required|exists:users,CodU',
