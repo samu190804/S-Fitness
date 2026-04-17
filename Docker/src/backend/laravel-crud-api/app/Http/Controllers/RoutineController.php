@@ -115,6 +115,45 @@ class RoutineController extends Controller
     }
 
     /**
+     * Filtra rutinas según los parámetros de consulta proporcionados.
+     */
+    public function filter(Request $request) 
+    {
+        $query = Routine::query()
+            ->join('users', 'users.CodU', '=', 'routines.CodU')
+            ->select('routines.*', 'users.Name as UserName');
+
+        if ($request->has('Qnombre')) {
+            $query->where('routines.Name', 'like', '%' . $request->Qnombre . '%');
+        }
+
+        if ($request->has('Qdias') && $request->Qdias > 0) {
+            $query->where('routines.Dias', $request->Qdias);
+        }
+
+        if ($request->has('Qduracion') && $request->Qduracion > 0) {
+            $query->where('routines.Duracion', $request->Qduracion);
+        }
+
+        if ($request->has('Qnivel') && $request->Qnivel > 0) {
+            $query->where('routines.Nivel', $request->Qnivel);
+        }
+
+        if ($request->has('Qmusculos')) {
+            $query->where('routines.Musculos', 'like', '%' . $request->Qmusculos . '%');
+        }
+
+        if ($request->has('QCodU')) {
+            $query->where('routines.CodU', $request->QCodU);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $query->get()
+        ]);
+    }
+
+    /**
      * Obtiene todas las rutinas de un usuario específico por su CodU.
      */
     public function porUsuario($codU)

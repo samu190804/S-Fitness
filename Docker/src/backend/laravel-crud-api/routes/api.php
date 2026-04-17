@@ -16,6 +16,7 @@ Route::get('/exercises/filter', [ExerciseController::class, 'filter']);
 Route::get('/exercises/routine/{codR}', [ExerciseController::class, 'ejerciciosDeRutina']);
 
 Route::get('/routines', [RoutineController::class, 'index']);
+Route::get('/routines/filter', [RoutineController::class, 'filter']);
 
 Route::middleware('auth:sanctum')->group(function () {
     //Auth
@@ -29,15 +30,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/users/{id}', [UserController::class, 'destroy']);
 
     // Exercises
-    Route::get('/exercises', [ExerciseController::class, 'index']);
-    Route::get('/exercises/filter', [ExerciseController::class, 'filter']);
-    Route::get('/exercises/routine/{codR}', [ExerciseController::class, 'ejerciciosDeRutina']);
+    Route::get('/exercises/{id}', [ExerciseController::class, 'show']);
     Route::post('/exercises', [ExerciseController::class, 'store']);
     Route::put('/exercises/{id}', [ExerciseController::class, 'update']);
     Route::delete('/exercises/{id}', [ExerciseController::class, 'destroy']);
 
     // Routines
-    Route::get('/routines', [RoutineController::class, 'index']);
     Route::get('/routines/{id}', [RoutineController::class, 'show']);
     Route::post('/routines', [RoutineController::class, 'store']);
     Route::put('/routines/{id}', [RoutineController::class, 'update']);
