@@ -99,3 +99,7 @@
 ```bash
     php artisan route:list
 ```
+# Crear migración Sanctum
+```bash
+    artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
