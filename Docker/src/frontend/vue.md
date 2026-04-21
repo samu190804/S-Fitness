@@ -15,3 +15,6 @@ Para crear proyecto:
 │
 ◇  Skip all example code and start with a blank Vue project?
 │  No
+
+Instalar bootstrap 5
+npm i bootstrap@latest
