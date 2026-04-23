@@ -1,12 +1,11 @@
 <script>
-import logo from "../../assets/LogoS.png"
 </script>
 
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img :src=logo height="150">
+                <img src='/LogoS.png' height="150">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

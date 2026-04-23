@@ -1,5 +1,4 @@
 <script>
-import logo from "../../assets/LogoS.png"
 </script>
 
 <template>
@@ -8,7 +7,7 @@ import logo from "../../assets/LogoS.png"
             <div class="row">
                 <div class="col-12 col-lg-4">
                     <a class="navbar-brand mx-auto" href="#">
-                        <img :src=logo height="150" class="rounded mx-auto d-block">
+                        <img src='/LogoS.png' height="150" class="rounded mx-auto d-block">
                     </a>
                 </div>
                 <div class="col-12 col-lg-4">
