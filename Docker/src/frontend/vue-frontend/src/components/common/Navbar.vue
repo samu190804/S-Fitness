@@ -1,4 +1,5 @@
-<script>
+<script setup lang="ts">
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -14,15 +15,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto" id="navegador">
-                    <li class="nav-item">
-                        <button v-on:click="" class="nav-link">Inicio</button>
-                    </li>
-                    <li class="nav-item">
-                        <button v-on:click="" class="nav-link">Buscar Ejercicio/Rutina</button>
-                    </li>
-                    <li class="nav-item">
-                        <button v-on:click="" class="nav-link">Empezar a compartir</button>
-                    </li>
+                    <RouterLink to="/" class="nav-link nav-link:hover">Inicio</RouterLink>
+                    <RouterLink to="/search" class="nav-link nav-link:hover">Buscar Ejercicio/Rutina</RouterLink>
+                    <RouterLink to="/create" class="nav-link nav-link:hover">Empezar a compartir</RouterLink>
                     <li class="nav-item dropdown" v-if="login">
                         <a data-mdb-dropdown-init
                             class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
@@ -39,8 +34,8 @@
                         </ul>
                     </li>
                     <li class="nav-item" v-else-if="!login">
-                        <button v-on:click="" class="btn btn-success login">Iniciar
-                            sesión</button>
+                        <RouterLink to="/login" class="btn btn-success login">Iniciar
+                            sesión</RouterLink>
                     </li>
                 </ul>
             </div>
@@ -49,12 +44,20 @@
 </template>
 
 <style scoped>
-.nav-item > button {
+.nav-link {
     color: rgb(56, 187, 100);
     font-size: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
-.nav-item > .btn {
+/* Estilo al pasar el mouse */
+.nav-link:hover {
+    color: rgb(40, 150, 70);
+}
+
+.btn {
     color: white;
     margin: 0.7rem;
     font-size: 1.2rem;
