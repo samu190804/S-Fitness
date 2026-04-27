@@ -11,7 +11,7 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="row" id="seccion">
+  <div class="row mx-2 mx-md-5" id="seccion">
     <h1>{{ section }}</h1>
     <p>{{ info }}</p>
   </div>

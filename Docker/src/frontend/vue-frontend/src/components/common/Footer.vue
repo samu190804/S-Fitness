@@ -17,14 +17,14 @@
                         </li>
                         <li class="nav-item mx-auto">
                             <a href="https://es-es.facebook.com/" class="mx-auto"><i class="fab fa-facebook"></i></a>
-                            <a href="https://twitter.com/home?lang=es" class="mx-auto"><i
+                            <a href="https://twitter.com/home?lang=es" class="mx-1"><i
                                     class="fab fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/" class="mx-auto"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.youtube.com" class="mx-auto"><i class="fab fa-youtube"></i></a>
-                            <a href="https://es.linkedin.com" class="mx-auto"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://www.instagram.com/" class="mx-1"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com" class="mx-1"><i class="fab fa-youtube"></i></a>
+                            <a href="https://es.linkedin.com" class="mx-1"><i class="fab fa-linkedin"></i></a>
                         </li>
                         <li class="nav-item mx-auto">
-                            <p>Correo: samu190804@gmail.com</p>
+                            <p>Correo: samueltfg190804@gmail.com</p>
                         </li>
                         <li class="nav-item mx-auto">
                             <p>Telefono: 789 324 534</p>
@@ -38,14 +38,14 @@
                     <div>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item mx-auto">
-                                <a href="Pdf/Aviso_Legal_SFit.pdf" class="nav-link">Aviso Legal</a>
+                                <a href="#" class="nav-link">Aviso Legal</a>
                             </li>
                             <li class="nav-item mx-auto">
-                                <a href="Pdf/Politica_Privacidad_SFit.pdf" class="nav-link">Política de
+                                <a href="#" class="nav-link">Política de
                                     Privacidad</a>
                             </li>
                             <li class="nav-item mx-auto">
-                                <a href="Pdf/Politica_Cookies_SFit.pdf" class="nav-link">Política de
+                                <a href="#" class="nav-link">Política de
                                     Cookies</a>
                             </li>
                         </ul>

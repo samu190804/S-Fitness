@@ -6,9 +6,8 @@ let info = '¡Aqui podras encontrar todo tipo de ejercicios y rutinas!'
 
 <template>
   <Section :info :section />
-  <main class="row bloquecentral mb-5">
+  <main class="row bloquecentral mb-5 mx-2 mx-md-5">
     <div class="row index">
-      <h4></h4>
       <div class="container-fluid">
         <div class="row">
           <div class="col-12 col-lg-6">
