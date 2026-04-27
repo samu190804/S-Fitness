@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue'
-let section = 'Bienvenido a S+ Fitness la casa de todo deportista.'
-let info = '¡Aqui podras encontrar todo tipo de ejercicios y rutinas!'
+const section = 'Bienvenido a S+ Fitness la casa de todo deportista.'
+const info = '¡Aqui podras encontrar todo tipo de ejercicios y rutinas!'
 </script>
 
 <template>

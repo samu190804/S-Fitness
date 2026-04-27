@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue';
-let section = 'Inicio de Sesión'
-let info = '¡Inicia sesión para empezar a compartir!'
+const section = 'Inicio de Sesión'
+const info = '¡Inicia sesión para empezar a compartir!'
 
 let email
 let password

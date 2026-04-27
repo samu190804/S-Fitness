@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue';
-let section = 'Registro de Usuario'
-let info = '¡Registrate y comparte conocimiento!'
+const section = 'Registro de Usuario'
+const info = '¡Registrate y comparte conocimiento!'
 let name
 let userName
 let email

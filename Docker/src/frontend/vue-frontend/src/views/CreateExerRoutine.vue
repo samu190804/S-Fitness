@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue';
-let section = 'En esta sección podrás crear tus propios ejercicios y rutinas.'
-let info = ''
+const section = 'En esta sección podrás crear tus propios ejercicios y rutinas.'
+const info = '¡Crea y disfruta!'
 </script>
 
 <template>

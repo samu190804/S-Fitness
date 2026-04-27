@@ -32,12 +32,7 @@ const router = createRouter({
       path: '/create',
       name: 'create',
       component: CreateExerRoutine,
-    },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   component: () => import('../views/AboutView.vue'),
-    // },
+    }
   ],
 })
 
