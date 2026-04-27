@@ -1,7 +1,30 @@
 export async function fetchExercises() {
-  const response = await fetch('http://localhost:8080/api/exercises');
+  const response = await fetch('http://localhost:8080/api/exercises', {
+    method: 'GET',
+  })
   if (!response.ok) throw new Error('Error en la respuesta del servidor');
-  return await response.json();
+  return await response.json()
+}
+
+export async function fetchFilter(params: any, type:number) {
+
+  const urlBase = type ? 'http://localhost:8080/api/routines' : 'http://localhost:8080/api/exercises'
+  const queryParams = new URLSearchParams()
+
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== null && value !== undefined && value !== '') {
+      queryParams.append(key, String(value))
+    }
+  }
+
+  const url = `${urlBase}/filter?${queryParams.toString()}`
+
+  const response = await fetch(url, {
+    method: 'GET'
+  })
+
+  if (!response.ok) throw new Error('Error en la respuesta del servidor');
+  return await response.json()
 }
 
 // function mostrarEjercicios() {
