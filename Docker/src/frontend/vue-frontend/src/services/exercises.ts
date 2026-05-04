@@ -1,5 +1,5 @@
 export async function fetchExercises() {
-  const response = await fetch('http://localhost:8080/api/exercises', {
+  const response = await fetch('/api/exercises', {
     method: 'GET',
   })
   if (!response.ok) throw new Error('Error en la respuesta del servidor');
@@ -8,7 +8,7 @@ export async function fetchExercises() {
 
 export async function fetchFilter(params: any, type:number) {
 
-  const urlBase = type ? 'http://localhost:8080/api/routines' : 'http://localhost:8080/api/exercises'
+  const urlBase = type ? '/api/routines' : '/api/exercises'
   const queryParams = new URLSearchParams()
 
   for (const [key, value] of Object.entries(params)) {

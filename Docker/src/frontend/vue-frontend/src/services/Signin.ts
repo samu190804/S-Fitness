@@ -7,7 +7,7 @@ export async function RegisterUser(params: any) {
     formData.append('Email', params.email);
     formData.append('Password', params.password);
     // formData.append('userPhoto', params.userData.userPhoto);
-    const response = await fetch('http://localhost:8080/api/signin', {
+    const response = await fetch('/api/signin', {
         method: 'POST',
         body: formData
     })

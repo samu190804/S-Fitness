@@ -4,7 +4,7 @@ export async function login(params: any) {
     formData.append('Email', params.email);
     formData.append('Password', params.password);
     // formData.append('userPhoto', params.userData.userPhoto);
-    const response = await fetch('http://localhost:8080/api/login', {
+    const response = await fetch('/api/login', {
         method: 'POST',
         body: formData
     })
@@ -18,7 +18,7 @@ export async function login(params: any) {
 
 export async function logout() {
     // formData.append('userPhoto', params.userData.userPhoto);
-    const response = await fetch('http://localhost:8080/api/logout/login', {
+    const response = await fetch('/api/logout/login', {
         method: 'POST'
     })
     if (!response.ok) {
