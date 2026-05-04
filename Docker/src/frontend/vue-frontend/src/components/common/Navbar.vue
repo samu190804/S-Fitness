@@ -5,9 +5,7 @@ import { RouterLink } from 'vue-router'
 <template>
     <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src='/LogoS.png' height="150">
-            </a>
+            <RouterLink to="/" class="navbar-brand"><img src='/LogoS.png' height="150"></RouterLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
