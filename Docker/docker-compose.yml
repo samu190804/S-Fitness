@@ -8,6 +8,9 @@ services:
       - ./src/backend/laravel-crud-api:/var/www/html
     depends_on:
       - db
+    networks:
+      - sfitness_net
+      - db_backend_net
 
   db:
     image: mariadb:10.11
@@ -18,6 +21,8 @@ services:
       MYSQL_DATABASE: splus_db
     ports:
       - "3306:3306"
+    networks:
+      - db_backend_net
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -26,3 +31,29 @@ services:
       - "8081:80"
     environment:
       PMA_HOST: db
+    networks:
+      - db_backend_net
+
+  frontend:
+    build:
+      context: ./src/frontend/vue-frontend
+      dockerfile: Dockerfile
+    container_name: vue_app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./src/frontend/vue-frontend:/app
+      - vue_frontend_node_modules:/app/node_modules
+    depends_on:
+      - web
+    networks:
+      - sfitness_net
+
+volumes:
+  vue_frontend_node_modules:
+
+networks:
+  sfitness_net:
+    driver: bridge
+  db_backend_net:
+    driver: bridge

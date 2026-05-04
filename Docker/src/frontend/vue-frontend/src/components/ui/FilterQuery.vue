@@ -21,10 +21,9 @@ const emit = defineEmits<{
 const applyFilters = async () => {
     try {
         const data = await fetchFilter(params, type.value)
-        emit('filter-applied', data, type.value)  // Emite el evento con los datos
+        emit('filter-applied', data, type.value)
     } catch (error) {
         console.error('Error aplicando filtros:', error)
-        // Opcional: emitir un error si quieres manejarlo en el padre
     }
 }
 

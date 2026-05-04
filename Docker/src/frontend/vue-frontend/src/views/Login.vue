@@ -1,10 +1,24 @@
 <script setup lang="ts">
-import Section from '@/components/common/Section.vue';
+import Section from '@/components/common/Section.vue'
+import { reactive} from 'vue'
+import { login } from '@/services/login'
+
 const section = 'Inicio de Sesión'
 const info = '¡Inicia sesión para empezar a compartir!'
 
-let email
-let password
+let params = reactive(
+    {
+        email: '',
+        password: ''
+    })
+    
+const log = async () => {
+    try {
+        const data = await login(params)
+    } catch (error) {
+        console.error('Error al registrar usuario:', error)
+    }
+}
 </script>
 
 <template>
@@ -13,15 +27,15 @@ let password
         <div class="row d-flex justify-content-center login">
             <div class="col-12 col-xl-4">
                 <!-- <h4 class="text-center">{{ resultado }}</h4> -->
-                <form @submit.prevent="" class="row g-3 mx-auto" style="max-width: 500px;">
+                <form @submit.prevent="log" class="row g-3 mx-auto" style="max-width: 500px;">
                     <div class="form-floating col-12">
                         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"
-                            v-model="email">
+                            v-model="params.email">
                         <label for="floatingInput">Email address</label>
                     </div>
                     <div class="form-floating col-12">
                         <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                            v-model="password">
+                            v-model="params.password">
                         <label for="floatingPassword">Password</label>
                     </div>
                     <div class="col-12 d-flex justify-content-center">
