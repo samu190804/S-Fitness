@@ -18,16 +18,24 @@ const props = defineProps<Props>()
                         <ul class="list-group list-group-flush">
                                 <li class="list-group-item">Días: {{ routine.Dias }}</li>
                                 <li class="list-group-item">Duración: {{ routine.Duracion }} min.</li>
-                                <li v-if="routine.Nivel == '1'" class="list-group-item">Dificultad: <img
-                                                class="dificultad img-fluid" src="Img/Dificultad_1.png"> </li>
-                                <li v-if="routine.Nivel == '2'" class="list-group-item">Dificultad: <img
-                                                class="dificultad img-fluid" src="Img/Dificultad_2.png"> </li>
-                                <li v-if="routine.Nivel == '3'" class="list-group-item">Dificultad: <img
-                                                class="dificultad img-fluid" src="Img/Dificultad_3.png"> </li>
-                                <li v-if="routine.Nivel == '4'" class="list-group-item">Dificultad: <img
-                                                class="dificultad img-fluid" src="Img/Dificultad_4.png"> </li>
-                                <li v-if="routine.Nivel == '5'" class="list-group-item">Dificultad: <img
-                                                class="dificultad img-fluid" src="Img/Dificultad_5.png"> </li>
+                                <li class="list-group-item py-3">
+                                        <div class="d-flex align-items-center">
+                                                <span class="me-3 fw-bold">Dificultad:</span>
+                                                <div class="progress flex-grow-1"
+                                                        style="height: 12px; background-color: #e9ecef;">
+                                                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                                                role="progressbar"
+                                                                :style="{ width: (routine.Nivel * 20) + '%' }" :class="{
+                                                                        'bg-info': routine.Nivel == 1,
+                                                                        'bg-success': routine.Nivel == 2,
+                                                                        'bg-warning': routine.Nivel == 3,
+                                                                        'bg-danger': routine.Nivel >= 4
+                                                                }"></div>
+                                                </div>
+                                                <span class="ms-3 badge rounded-pill bg-dark">{{ routine.Nivel }} /
+                                                        5</span>
+                                        </div>
+                                </li>
                                 <!-- <button v-on:click="mostrarEjerciciosroutine(routine.CodR, routine.Name, routine.UserName, routine.Descripcion)"
                 class="btn btn-success indexbtn" role="button">Ver Ejercicios</button> -->
                                 <!-- <button v-if="userData.userAdmin == '1'" v-on:click="borrarroutine(routine.CodR)"

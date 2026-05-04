@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import Section from '@/components/common/Section.vue';
-import Exercises from '@/components/ui/Exercises.vue';
-// import Routines from '@/components/ui/Routines.vue';
-import FilterQuery from '@/components/ui/FilterQuery.vue';
+import Section from '@/components/common/Section.vue'
+import Exercises from '@/components/ui/Exercises.vue'
+import Routines from '@/components/ui/Routines.vue'
+import FilterQuery from '@/components/ui/FilterQuery.vue'
 import { onMounted, ref } from 'vue'
-import { fetchExercises } from '@/services/exercises';
+import { fetchExercises } from '@/services/exercises'
 
 const section = 'En esta sección podrás ver todos los ejercicios y rutinas.'
 const info = '¡Echa un vistazo!'
 let resultado = ref('')
 let descripcion = ref('')
-const query = ref<Exercise[]>([])
+const query = ref<any[]>([])
+let type = ref(0)
 
 onMounted(async () => {
     try {
@@ -22,10 +23,11 @@ onMounted(async () => {
     }
 })
 
-const handleFilterApplied = (data: any) => {
+const handleFilterApplied = (data: any, typeF:number) => {
     query.value = data.data
     resultado.value = 'Filtros aplicados'
     descripcion.value = ''
+    type.value = typeF
 };
 </script>
 
@@ -38,8 +40,9 @@ const handleFilterApplied = (data: any) => {
             <p class="descripcionR">{{ descripcion }}</p>
 
             <div class="row">
-                <Exercises :exercises="query" />
-                <!-- <Routines/> -->
+
+                <Exercises :exercises="query" v-if="!type"/>
+                <Routines :routines="query" v-else/>
             </div>
         </div>
     </main>

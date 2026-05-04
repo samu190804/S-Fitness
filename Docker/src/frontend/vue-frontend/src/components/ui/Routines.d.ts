@@ -5,6 +5,6 @@ interface Routine {
   Img: string;
   Dias: number;
   Duracion: number;
-  Nivel: string;
+  Nivel: number;
   Descripcion: string;
 }

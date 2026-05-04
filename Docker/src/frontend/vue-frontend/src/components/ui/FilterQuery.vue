@@ -15,13 +15,13 @@ let params = reactive(
     })
 
 const emit = defineEmits<{
-    'filter-applied': [data: any]
+    'filter-applied': [data: any, type: number]
 }>()
 
 const applyFilters = async () => {
     try {
         const data = await fetchFilter(params, type.value)
-        emit('filter-applied', data)  // Emite el evento con los datos
+        emit('filter-applied', data, type.value)  // Emite el evento con los datos
     } catch (error) {
         console.error('Error aplicando filtros:', error)
         // Opcional: emitir un error si quieres manejarlo en el padre
