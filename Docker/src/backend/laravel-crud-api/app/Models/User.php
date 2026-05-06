@@ -17,13 +17,24 @@ class User extends Authenticatable
     protected $keyType = 'int';
 
     protected $fillable = [
-        'Name', 'UserName', 'Email', 'Password', 'admin', 'Img'
+        'Name',
+        'UserName',
+        'Email',
+        'Password',
+        'admin',
+        'Img'
     ];
 
     protected $hidden = [
         'Password',
         'remember_token'
     ];
+    
+    protected $authPasswordName = 'Password'; // columna real de password
+    public function getAuthPassword()
+    {
+        return $this->Password;
+    }
 
     public function ejercicios()
     {

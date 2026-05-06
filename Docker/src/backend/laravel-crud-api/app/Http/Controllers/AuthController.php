@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    /**
-     * Login - Genera un token para el usuario
-     */
     public function login(Request $request)
     {
         $request->validate([
@@ -19,35 +17,30 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $user = User::where('email', $request->email)->first();
-
-        if (!$user || !Hash::check($request->password, $user->Password)) {
+        // Auth::attempt gestiona la sesión + cookie automáticamente
+        if (!Auth::attempt([
+            'Email'    => $request->email,
+            'password' => $request->password
+        ])) {
             throw ValidationException::withMessages([
-                'email' => ['Las credenciales proporcionadas no son vállicas.'],
+                'email' => ['Credenciales incorrectas.'],
             ]);
         }
 
-        // Crear token con nombre
-        $token = $user->createToken('auth-token')->plainTextToken;
+        $request->session()->regenerate();
 
         return response()->json([
             'success' => true,
             'message' => 'Login exitoso',
-            'data' => [
-                'user' => $user,
-                'token' => $token,
-                'token_type' => 'Bearer',
-            ]
+            'data'    => ['user' => Auth::user()]
         ]);
     }
 
-    /**
-     * Logout - Elimina el token actual
-     */
     public function logout(Request $request)
     {
-        // Eliminar el token actual
-        $request->user()->currentAccessToken()->delete();
+        Auth::guard('web')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
         return response()->json([
             'success' => true,
@@ -55,9 +48,6 @@ class AuthController extends Controller
         ]);
     }
 
-    /**
-     * Obtener usuario autenticado
-     */
     public function me(Request $request)
     {
         return response()->json([

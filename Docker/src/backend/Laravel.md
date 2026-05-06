@@ -9,3 +9,7 @@ php artisan serve
 php artisan install:api
 
 sudo docker exec -it php_app php artisan migrate
+
+docker exec -it php_app php artisan route:list
+
+docker exec -it php_app grep sanctum   
