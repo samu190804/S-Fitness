@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class UpdateRoutineRequest extends FormRequest
 {
@@ -45,5 +47,15 @@ class UpdateRoutineRequest extends FormRequest
             'ejercicios.array' => 'Los ejercicios deben ser un array',
             'ejercicios.*.exists' => 'Uno o más ejercicios no existen'
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'message' => 'Errores de validación',
+                'errors' => $validator->errors() // aquí sí saldrían tus mensajes de messages()
+            ], 422)
+        );
     }
 }
