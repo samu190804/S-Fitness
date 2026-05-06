@@ -1,17 +1,20 @@
 export async function login(params: any) {
-    const formData = new FormData();
-
-    formData.append('Email', params.email);
-    formData.append('Password', params.password);
-    // formData.append('userPhoto', params.userData.userPhoto);
+    let json = JSON.stringify({
+            email: params.email,
+            password: params.password,
+        })
+    console.log(json)
     const response = await fetch('/api/login', {
         method: 'POST',
-        body: formData
+                headers: {
+            'Content-Type': 'application/json',
+        },
+        body: json
     })
     if (!response.ok) {
-        throw new Error('Error en la respuesta del servidor')
-    }else{
-        console.log(response.json())
+        const text = await response.text()
+        throw new Error(`Error del servidor (${response.status}): ${text}`);
+    } else {
         return await response.json()
     }
 }

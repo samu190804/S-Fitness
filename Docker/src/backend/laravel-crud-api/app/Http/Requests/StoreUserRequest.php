@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
 
 class StoreUserRequest extends FormRequest
 {
@@ -43,5 +45,15 @@ class StoreUserRequest extends FormRequest
             'Password.required' => 'La contraseña es obligatoria',
             'Password.min' => 'La contraseña debe tener al menos 8 caracteres'
         ];
+    }
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'message' => 'Errores de validación',
+                'errors' => $validator->errors() // aquí sí saldrían tus mensajes de messages()
+            ], 422)
+        );
     }
 }

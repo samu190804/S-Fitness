@@ -1,20 +1,22 @@
 
 export async function RegisterUser(params: any) {
-    const formData = new FormData();
-
-    formData.append('Name', params.name);
-    formData.append('UserName', params.userName);
-    formData.append('Email', params.email);
-    formData.append('Password', params.password);
-    // formData.append('userPhoto', params.userData.userPhoto);
+    let json = JSON.stringify({
+        Name: params.name,
+        UserName: params.userName,
+        Email: params.email,
+        Password: params.password,
+    })
     const response = await fetch('/api/signin', {
         method: 'POST',
-        body: formData
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: json
     })
     if (!response.ok) {
-        throw new Error('Error en la respuesta del servidor')
-    }else{
-        console.log(response.json())
+        const text = await response.text()
+        throw new Error(`Error del servidor (${response.status}): ${text}`);
+    } else {
         return await response.json()
     }
 }
