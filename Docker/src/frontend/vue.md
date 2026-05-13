@@ -18,3 +18,5 @@ Para crear proyecto:
 
 Instalar bootstrap 5
 npm i bootstrap@latest
+Instalar Pinia
+npm i pinia
