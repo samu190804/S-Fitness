@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 const auth = useAuthStore()
+const router = useRouter()
+
+const handleLogout = async () => {
+    await auth.logout()
+    router.push('/login')
+}
 </script>
 
 <template>
@@ -29,8 +36,7 @@ const auth = useAuthStore()
                                     Perfil</a></li>
                             <li><a class="dropdown-item" v-on:click="" href="#">Mis
                                     Ejercicios/Rutinas</a></li>
-                            <li><a class="dropdown-item" v-on:click="" href="#">Cerrar
-                                    Sesion</a></li>
+                            <li><a class="dropdown-item" @click.prevent="handleLogout" href="#">Cerrar Sesión</a></li>
                             <li><a class="dropdown-item" id="borrarCuenta" v-on:click="" href="#">Borrar Cuenta</a></li>
                         </ul>
                     </li>
