@@ -1,6 +1,6 @@
 
 export async function RegisterUser(params: any) {
-    let json = JSON.stringify({
+    let data = JSON.stringify({
         Name: params.name,
         UserName: params.userName,
         Email: params.email,
@@ -8,15 +8,19 @@ export async function RegisterUser(params: any) {
     })
     const response = await fetch('/api/signin', {
         method: 'POST',
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'Accept': 'application/json',
         },
-        body: json
+        body: JSON.stringify(data)
     })
+
+    const json = await response.json()
+
     if (!response.ok) {
-        const text = await response.text()
-        throw new Error(`Error del servidor (${response.status}): ${text}`);
-    } else {
-        return await response.json()
+        throw new Error(json.message || `Error del servidor (${response.status})`)
     }
+
+    return json
 }

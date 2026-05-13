@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { useAuthStore } from '@/stores/auth'
+
+const auth = useAuthStore()
 </script>
 
 <template>
@@ -16,7 +19,7 @@ import { RouterLink } from 'vue-router'
                     <RouterLink to="/" class="nav-link nav-link:hover">Inicio</RouterLink>
                     <RouterLink to="/search" class="nav-link nav-link:hover">Buscar Ejercicio/Rutina</RouterLink>
                     <RouterLink to="/create" class="nav-link nav-link:hover">Empezar a compartir</RouterLink>
-                    <li class="nav-item dropdown" v-if="login">
+                    <li class="nav-item dropdown" v-if="auth.isAuthenticated">
                         <a data-mdb-dropdown-init
                             class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                             id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -31,7 +34,7 @@ import { RouterLink } from 'vue-router'
                             <li><a class="dropdown-item" id="borrarCuenta" v-on:click="" href="#">Borrar Cuenta</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item" v-else-if="!login">
+                    <li class="nav-item" v-else>
                         <RouterLink to="/login" class="btn btn-success login">Iniciar
                             sesión</RouterLink>
                     </li>
