@@ -3,9 +3,13 @@ import {RouterView } from 'vue-router'
 import Navbar from './components/common/Navbar.vue';
 import Footer from './components/common/Footer.vue';
 import { useAuthStore } from '@/stores/auth'
+import { onMounted } from 'vue';
 
 const auth = useAuthStore()
-await auth.fetchUser() // Pregunta al backend si hay sesión activa
+
+onMounted(async () => {
+  await auth.fetchUser()
+})
 </script>
 
 <template>
