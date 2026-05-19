@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue'
-import { RegisterUser } from '@/services/Signin'
+import { registerUser } from '@/services/Signin'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
@@ -22,7 +22,7 @@ const params = reactive({
 const register = async () => {
     error.value = ''
     try {
-        await RegisterUser(params)
+        await registerUser(params)
 
         const result = await auth.login({
             email: params.email,

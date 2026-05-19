@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { initCsrf, getCookie } from '@/services/login'
+import { initCsrf, getCookie } from '@/services/cookiesCSRF'
 
 // Tipo para tu usuario
 interface User {

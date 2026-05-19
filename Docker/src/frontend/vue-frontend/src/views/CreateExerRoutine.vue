@@ -28,7 +28,7 @@ const auth = useAuthStore()
     </main>
 </template>
 
-<style>
+<style scoped>
 .btn {
     color: white;
     margin: 0.7rem;

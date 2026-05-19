@@ -2,6 +2,7 @@
 import { RouterLink } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { useRouter } from 'vue-router'
+import { deleteUser } from '@/services/Signin'
 
 const auth = useAuthStore()
 const router = useRouter()
@@ -9,6 +10,21 @@ const router = useRouter()
 const handleLogout = async () => {
     await auth.logout()
     router.push('/login')
+}
+
+const deleteaccount = async () => {
+    let check = confirm("¿Seguro que quiere borrar la cuenta?\n Se perderán todos los ejercicios y rutinas creados")
+    if (check) {
+        try {
+            const result = await deleteUser(auth.user?.CodU)
+            if (result.success) {
+                await auth.logout()
+                router.push('/')
+            }
+        } catch (e) {
+            console.error('Error al conectar con el servidor')
+        }
+    }
 }
 </script>
 
@@ -36,8 +52,12 @@ const handleLogout = async () => {
                                     Perfil</a></li>
                             <li><a class="dropdown-item" v-on:click="" href="#">Mis
                                     Ejercicios/Rutinas</a></li>
-                            <li><a class="dropdown-item" @click.prevent="handleLogout" href="#">Cerrar Sesión</a></li>
-                            <li><a class="dropdown-item" id="borrarCuenta" v-on:click="" href="#">Borrar Cuenta</a></li>
+                            <li> <button class="dropdown-item" @click="handleLogout">
+                                    Cerrar Sesión
+                                </button></li>
+                            <li> <button class="dropdown-item" id="borrarCuenta" @click="deleteaccount">
+                                    Borrar Cuenta
+                                </button></li>
                         </ul>
                     </li>
                     <li class="nav-item" v-else>
