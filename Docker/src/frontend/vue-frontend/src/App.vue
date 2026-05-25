@@ -1,27 +1,30 @@
 <script setup lang="ts">
-import {RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Navbar from './components/common/Navbar.vue';
 import Footer from './components/common/Footer.vue';
 import { useAuthStore } from '@/stores/auth'
 import { onMounted } from 'vue';
+import router from './router';
 
 const auth = useAuthStore()
 
 onMounted(async () => {
-  await auth.fetchUser()
+  try {
+    await auth.fetchUser()
+  } catch (e: any) {
+    router.push('/')
+  }
 })
 </script>
 
 <template>
   <header>
-    <Navbar/>
+    <Navbar />
   </header>
-  <RouterView/>
+  <RouterView />
   <footer>
-    <Footer/>
+    <Footer />
   </footer>
 </template>
 
-<style>
-
-</style>
+<style></style>

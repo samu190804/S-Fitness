@@ -13,10 +13,10 @@ const auth = useAuthStore()
     <main class="row bloquecentral mb-5">
         <div class="col-12 text-center mb-5" v-if="auth.isAuthenticated">
             <h3>Elige qué quieres crear</h3>
-            <button type="submit" v-on:click="" class="btn-outline-success mx-2">Crear
-                Ejercicio</button>
-            <button type="submit" v-on:click="" class="btn-outline-success mx-2">Crear
-                Rutina</button>
+            <RouterLink to="/FormExer" class="btn btn-outline-success mx-2">Crear
+                Ejercicio</RouterLink>
+            <RouterLink to="/FormRoutine" class="btn btn-outline-success mx-2">Crear
+                Rutina</RouterLink>
         </div>
         <div class="col-12 text-center" v-else>
             <h1>¡Bienvenido!</h1>
@@ -29,9 +29,4 @@ const auth = useAuthStore()
 </template>
 
 <style scoped>
-.btn {
-    color: white;
-    margin: 0.7rem;
-    font-size: 1.2rem;
-}
 </style>

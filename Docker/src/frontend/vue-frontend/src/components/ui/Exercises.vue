@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+import { getEmbedUrl } from '@/services/exercises';
 interface Props {
     exercises: Exercise[];
 }
@@ -13,7 +13,7 @@ const props = defineProps<Props>()
     <div class="col-12 col-md-6 col-lg-4" v-for="exer in exercises" :key="exer.CodE">
         <div class="card h-100">
             <div class="ratio ratio-16x9">
-                <iframe :src="exer.Video" title="YouTube video" allowfullscreen></iframe>
+                <iframe :src="getEmbedUrl(exer.Video)" title="YouTube video" allowfullscreen></iframe>
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ exer.Name }}</h5>

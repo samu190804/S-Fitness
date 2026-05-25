@@ -11,6 +11,7 @@ const auth = useAuthStore()
 const section = 'Registro de Usuario'
 const info = '¡Regístrate y comparte conocimiento!'
 const error = ref('')
+const success = ref('')
 
 const params = reactive({
     name: '',
@@ -22,8 +23,12 @@ const params = reactive({
 const register = async () => {
     error.value = ''
     try {
-        await registerUser(params)
-
+        const create = await registerUser(params)
+        
+        if (create.success){
+            success.value = "Usuario creado"
+        }
+        
         const result = await auth.login({
             email: params.email,
             password: params.password
@@ -69,6 +74,7 @@ const register = async () => {
                         <label for="profileImage" class="form-label">Imagen de perfil</label>
                         <input class="form-control" type="file" name="foto" id="profileImage" @change="">
                     </div> -->
+                    <p v-if="success" class="text-success text-center">{{ success }}</p>
                     <p v-if="error" class="text-danger text-center">{{ error }}</p>
                     <div class="col-12 d-flex justify-content-center">
                         <button type="submit" class="btn btn-success">Registrar</button>

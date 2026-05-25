@@ -5,6 +5,8 @@ import Singup from '@/views/Singup.vue'
 import Search from '@/views/Search.vue'
 import CreateExerRoutine from '@/views/CreateExerRoutine.vue'
 import UpdateProfile from '@/views/UpdateProfile.vue'
+import FormExer from '@/views/FormExer.vue'
+import FormRoutine from '@/views/FormRoutine.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +40,16 @@ const router = createRouter({
       path: '/updateProfile',
       name: 'updateProfile',
       component: UpdateProfile,
+    }, 
+    {
+      path: '/FormExer',
+      name: 'FormExer',
+      component: FormExer,
+    },
+    {
+      path: '/FormRoutine',
+      name: 'FormRoutine',
+      component: FormRoutine,
     }
   ],
 })
