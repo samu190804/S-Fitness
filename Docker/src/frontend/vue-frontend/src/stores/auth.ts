@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { initCsrf, getCookie } from '@/services/cookiesCSRF'
 
-// Tipo para tu usuario
 interface User {
     CodU: number
     Name: string
@@ -17,19 +16,20 @@ interface LoginCredentials {
     password: string
 }
 
+interface UpdateUserParams {
+    name: string
+    userName: string
+    email: string
+    password: string
+}
+
 export const useAuthStore = defineStore('auth', () => {
-
-    // ── Estado ──────────────────────────────────────────
     const user = ref<User | null>(null)
-    const ready = ref(false) // ¿Ya verificamos si hay sesión activa?
+    const ready = ref(false)
 
-    // ── Getters ─────────────────────────────────────────
     const isAuthenticated = computed(() => !!user.value)
     const isAdmin = computed(() => user.value?.admin ?? false)
 
-    // ── Actions ─────────────────────────────────────────
-
-    // Llamado al cargar la app — recupera sesión si existe
     async function fetchUser(): Promise<void> {
         try {
             const res = await fetch('/api/me', {
@@ -51,14 +51,8 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     async function login(credentials: LoginCredentials): Promise<{ success: boolean; message?: string }> {
-
-        // Paso 1 - Pedir CSRF cookie
         await initCsrf()
-
-        // Paso 2 - Leer el XSRF-TOKEN de las cookies
         const xsrfToken = getCookie('XSRF-TOKEN')
-
-        // Paso 3 - Login enviando el token en el header
         const res = await fetch('/api/login', {
             method: 'POST',
             credentials: 'include',
@@ -69,7 +63,6 @@ export const useAuthStore = defineStore('auth', () => {
             },
             body: JSON.stringify(credentials)
         })
-
         const json = await res.json()
         if (json.success) {
             user.value = json.data.user
@@ -86,6 +79,34 @@ export const useAuthStore = defineStore('auth', () => {
         user.value = null
     }
 
+    async function updateUser(params: UpdateUserParams): Promise<{ success: boolean; message?: string }> {
+        const xsrfToken = getCookie('XSRF-TOKEN')
+        const res = await fetch(`/api/users/${user.value?.CodU}`, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-XSRF-TOKEN': xsrfToken
+            },
+            body: JSON.stringify({
+                Name: params.name,
+                UserName: params.userName,
+                Email: params.email,
+                Password: params.password,
+            })
+        })
+        const json = await res.json()
+        if (!res.ok) {
+            throw new Error(json.message || `Error del servidor (${res.status})`)
+        }
+        // Actualiza el store con los nuevos datos
+        if (json.success) {
+            user.value = json.data
+        }
+        return json
+    }
+
     return {
         user,
         ready,
@@ -94,5 +115,6 @@ export const useAuthStore = defineStore('auth', () => {
         fetchUser,
         login,
         logout,
+        updateUser,
     }
 })

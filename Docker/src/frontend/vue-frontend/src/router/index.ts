@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue'
 import Singup from '@/views/Singup.vue'
 import Search from '@/views/Search.vue'
 import CreateExerRoutine from '@/views/CreateExerRoutine.vue'
+import UpdateProfile from '@/views/UpdateProfile.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/create',
       name: 'create',
       component: CreateExerRoutine,
+    },
+    {
+      path: '/updateProfile',
+      name: 'updateProfile',
+      component: UpdateProfile,
     }
   ],
 })

@@ -48,10 +48,14 @@ const deleteaccount = async () => {
                             id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" v-on:click="" href="#">Editar
-                                    Perfil</a></li>
-                            <li><a class="dropdown-item" v-on:click="" href="#">Mis
-                                    Ejercicios/Rutinas</a></li>
+                            <li>
+                                <RouterLink to="/updateProfile" class="dropdown-item">Editar
+                                    Perfil</RouterLink>
+                            </li>
+                            <li>
+                                <RouterLink to="/updateProfile" class="dropdown-item">Mis
+                                    Ejercicios/Rutinas</RouterLink>
+                            </li>
                             <li> <button class="dropdown-item" @click="handleLogout">
                                     Cerrar Sesión
                                 </button></li>
