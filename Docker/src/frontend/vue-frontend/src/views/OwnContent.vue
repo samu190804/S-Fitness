@@ -3,7 +3,7 @@ import Section from '@/components/common/Section.vue'
 import Exercises from '@/components/ui/Exercises.vue'
 import Routines from '@/components/ui/Routines.vue'
 import FilterQuery from '@/components/ui/FilterQuery.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { fetchFilter } from '@/services/exercises'
 import { useAuthStore } from '@/stores/auth'
 
@@ -14,7 +14,7 @@ let resultado = ref('')
 let descripcion = ref('')
 const query = ref<any[]>([])
 let type = ref(0)
-let params = { CodU: auth.user?.CodU }
+let params = reactive({ QCodU: auth.user?.CodU })
 
 onMounted(async () => {
     try {
@@ -27,18 +27,21 @@ onMounted(async () => {
 })
 
 const handleFilterApplied = (data: any, typeF: number) => {
+    if (typeF !== type.value) {
+        query.value = []
+    }
     query.value = data.data
     resultado.value = 'Filtros aplicados'
     descripcion.value = ''
     type.value = typeF
-};
+}
 </script>
 
 <template>
     <Section :info :section />
     <main class="row bloquecentral mb-5 mb-5 mx-2 mx-md-5">
         <div class="row">
-            <FilterQuery :cod-u="auth.user?.CodU" @filter-applied="handleFilterApplied" />
+            <FilterQuery :-q-cod-u="auth.user?.CodU" @filter-applied="handleFilterApplied" />
             <h4>{{ resultado }}</h4>
             <p class="descripcionR">{{ descripcion }}</p>
 

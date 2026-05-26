@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { fetchFilter } from '@/services/exercises';
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
 interface Props {
-  codU: number | undefined
+  QCodU: number | undefined
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  codU: undefined
+  QCodU: undefined
 })
 
 let type = ref(0)
@@ -21,8 +21,19 @@ let params = reactive(
         Qnrepeticiones: '',
         Qduracion: '',
         Qnivel: '',
-        CodU: ''
+        QCodU: props.QCodU
     })
+
+watch(() => type.value, () => {
+    params.Qnombre = ''
+    params.Qmusculo = ''
+    params.Qmusculos = ''
+    params.Qnseries = ''
+    params.Qdias = ''
+    params.Qnrepeticiones = ''
+    params.Qduracion = ''
+    params.Qnivel = ''
+})
 
 const emit = defineEmits<{
     'filter-applied': [data: any, type: number]
@@ -30,6 +41,7 @@ const emit = defineEmits<{
 
 const applyFilters = async () => {
     try {
+        console.log(params, type)
         const data = await fetchFilter(params, type.value)
         emit('filter-applied', data, type.value)
     } catch (error) {
@@ -50,8 +62,8 @@ const applyFilters = async () => {
 
             <div class="col-12 col-sm-auto ">
                 <select class="form-select" v-model="type">
-                    <option selected value=0>Ejercicios</option>
-                    <option value=1>Rutinas</option>
+                    <option selected :value=0>Ejercicios</option>
+                    <option :value=1>Rutinas</option>
                 </select>
             </div>
 

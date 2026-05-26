@@ -23,19 +23,22 @@ onMounted(async () => {
     }
 })
 
-const handleFilterApplied = (data: any, typeF:number) => {
+const handleFilterApplied = (data: any, typeF: number) => {
+    if (typeF !== type.value) {
+        query.value = []
+    }
     query.value = data.data
     resultado.value = 'Filtros aplicados'
     descripcion.value = ''
     type.value = typeF
-};
+}
 </script>
 
 <template>
     <Section :info :section />
     <main class="row bloquecentral mb-5 mb-5 mx-2 mx-md-5">
         <div class="row">
-            <FilterQuery :cod-u="undefined" @filter-applied="handleFilterApplied"/>
+            <FilterQuery :-q-cod-u="undefined" @filter-applied="handleFilterApplied"/>
             <h4>{{ resultado }}</h4>
             <p class="descripcionR">{{ descripcion }}</p>
 
