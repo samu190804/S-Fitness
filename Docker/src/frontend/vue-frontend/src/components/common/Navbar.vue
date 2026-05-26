@@ -46,6 +46,7 @@ const deleteaccount = async () => {
                         <a data-mdb-dropdown-init
                             class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                             id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="auth.user?.Img" class="rounded-circle imgPerfil" />
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>

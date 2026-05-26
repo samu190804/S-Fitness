@@ -17,8 +17,8 @@ const props = defineProps<Props>()
             </div>
             <div class="card-body">
                 <h5 class="card-title">{{ exer.Name }}</h5>
-                <h6 class="card-title">Creador: {{ exer.UserName }}
-                    <!-- <img :src="'Php/' + exer.Img" class="rounded-circle imgPerfil" /> -->
+                <h6 class="card-title">Creador: {{ exer.usuario.UserName }}
+                    <img :src="'Php/' + exer.usuario.Img" class="rounded-circle imgPerfil" />
                 </h6>
                 <p class="card-text">{{ exer.Descripcion }}</p>
             </div>
