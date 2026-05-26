@@ -119,9 +119,7 @@ class RoutineController extends Controller
      */
     public function filter(Request $request) 
     {
-        $query = Routine::query()
-            ->join('users', 'users.CodU', '=', 'routines.CodU')
-            ->select('routines.*', 'users.Name as UserName');
+        $query = Routine::with('usuario')->select('routines.*');
 
         if ($request->has('Qnombre')) {
             $query->where('routines.Name', 'like', '%' . $request->Qnombre . '%');

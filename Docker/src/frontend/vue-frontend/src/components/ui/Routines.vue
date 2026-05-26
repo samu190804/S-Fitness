@@ -12,7 +12,7 @@ const props = defineProps<Props>()
                 <div class="card h-100">
                         <div class="card-body">
                                 <h3 class="card-title">{{ routine.Name }}</h3>
-                                <h6 class="card-title">Creador: {{ routine.UserName }} <img :src="'Php/' + routine.Img"
+                                <h6 class="card-title">Creador: {{ routine.usuario.UserName }} <img :src="'Php/' + routine.Img"
                                                 class="rounded-circle imgPerfil" /></h6>
                         </div>
                         <ul class="list-group list-group-flush">

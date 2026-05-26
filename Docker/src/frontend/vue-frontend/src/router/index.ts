@@ -7,6 +7,7 @@ import CreateExerRoutine from '@/views/CreateExerRoutine.vue'
 import UpdateProfile from '@/views/UpdateProfile.vue'
 import FormExer from '@/views/FormExer.vue'
 import FormRoutine from '@/views/FormRoutine.vue'
+import OwnContent from '@/views/OwnContent.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,14 +43,19 @@ const router = createRouter({
       component: UpdateProfile,
     }, 
     {
-      path: '/FormExer',
-      name: 'FormExer',
+      path: '/formExer',
+      name: 'formExer',
       component: FormExer,
     },
     {
-      path: '/FormRoutine',
-      name: 'FormRoutine',
+      path: '/formRoutine',
+      name: 'formRoutine',
       component: FormRoutine,
+    },
+    {
+      path: '/ownContent',
+      name: 'ownContent',
+      component: OwnContent,
     }
   ],
 })

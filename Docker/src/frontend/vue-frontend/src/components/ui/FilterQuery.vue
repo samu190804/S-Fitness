@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { fetchFilter } from '@/services/exercises';
 import { reactive, ref } from 'vue'
+
+interface Props {
+  codU: number | undefined
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  codU: undefined
+})
+
 let type = ref(0)
 let params = reactive(
     {
@@ -11,7 +20,8 @@ let params = reactive(
         Qdias: '',
         Qnrepeticiones: '',
         Qduracion: '',
-        Qnivel: ''
+        Qnivel: '',
+        CodU: ''
     })
 
 const emit = defineEmits<{

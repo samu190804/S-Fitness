@@ -46,7 +46,7 @@ const deleteaccount = async () => {
                         <a data-mdb-dropdown-init
                             class="nav-link dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                             id="navbarDropdownMenuAvatar" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="auth.user?.Img" class="rounded-circle imgPerfil" />
+                            <img src="" class="rounded-circle imgPerfil" />
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <li>
@@ -54,7 +54,7 @@ const deleteaccount = async () => {
                                     Perfil</RouterLink>
                             </li>
                             <li>
-                                <RouterLink to="/updateProfile" class="dropdown-item">Mis
+                                <RouterLink to="/ownContent" class="dropdown-item">Mis
                                     Ejercicios/Rutinas</RouterLink>
                             </li>
                             <li> <button class="dropdown-item" @click="handleLogout">

@@ -109,9 +109,7 @@ class ExerciseController extends Controller
      */
     public function filter(Request $request) 
     {
-        $query = Exercise::query()
-            ->join('users', 'users.CodU', '=', 'exercises.CodU')
-            ->select('exercises.*', 'users.Name as UserName');
+        $query = Exercise::with('usuario')->select('exercises.*');
 
         if ($request->has('Qnombre')) {
             $query->where('exercises.Name', 'like', '%' . $request->Qnombre . '%');

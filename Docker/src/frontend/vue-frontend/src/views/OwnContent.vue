@@ -4,18 +4,21 @@ import Exercises from '@/components/ui/Exercises.vue'
 import Routines from '@/components/ui/Routines.vue'
 import FilterQuery from '@/components/ui/FilterQuery.vue'
 import { onMounted, ref } from 'vue'
-import { fetchExercises } from '@/services/exercises'
+import { fetchFilter } from '@/services/exercises'
+import { useAuthStore } from '@/stores/auth'
 
-const section = 'En esta sección podrás ver todos los ejercicios y rutinas.'
+const auth = useAuthStore()
+const section = 'Tus ejercicios y rutinas.'
 const info = '¡Echa un vistazo!'
 let resultado = ref('')
 let descripcion = ref('')
 const query = ref<any[]>([])
 let type = ref(0)
+let params = { CodU: auth.user?.CodU }
 
 onMounted(async () => {
     try {
-        let json = await fetchExercises();
+        let json = await fetchFilter(params, type.value)
         query.value = json.data
     } catch (error) {
         resultado.value = "Sin resultado";
@@ -23,7 +26,7 @@ onMounted(async () => {
     }
 })
 
-const handleFilterApplied = (data: any, typeF:number) => {
+const handleFilterApplied = (data: any, typeF: number) => {
     query.value = data.data
     resultado.value = 'Filtros aplicados'
     descripcion.value = ''
@@ -35,13 +38,13 @@ const handleFilterApplied = (data: any, typeF:number) => {
     <Section :info :section />
     <main class="row bloquecentral mb-5 mb-5 mx-2 mx-md-5">
         <div class="row">
-            <FilterQuery :cod-u="undefined" @filter-applied="handleFilterApplied"/>
+            <FilterQuery :cod-u="auth.user?.CodU" @filter-applied="handleFilterApplied" />
             <h4>{{ resultado }}</h4>
             <p class="descripcionR">{{ descripcion }}</p>
 
             <div class="row">
-                <Exercises :exercises="query" v-if="!type"/>
-                <Routines :routines="query" v-else/>
+                <Exercises :exercises="query" v-if="!type" />
+                <Routines :routines="query" v-else />
             </div>
         </div>
     </main>

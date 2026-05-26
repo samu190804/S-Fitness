@@ -13,9 +13,9 @@ const auth = useAuthStore()
     <main class="row bloquecentral mb-5">
         <div class="col-12 text-center mb-5" v-if="auth.isAuthenticated">
             <h3>Elige qué quieres crear</h3>
-            <RouterLink to="/FormExer" class="btn btn-outline-success mx-2">Crear
+            <RouterLink to="/formExer" class="btn btn-outline-success mx-2">Crear
                 Ejercicio</RouterLink>
-            <RouterLink to="/FormRoutine" class="btn btn-outline-success mx-2">Crear
+            <RouterLink to="/formRoutine" class="btn btn-outline-success mx-2">Crear
                 Rutina</RouterLink>
         </div>
         <div class="col-12 text-center" v-else>
