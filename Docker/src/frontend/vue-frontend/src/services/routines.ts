@@ -24,7 +24,7 @@ export async function createRoutine(params: any) {
     body: data
   })
   const json = await response.json()
-
+  console.log(json)
   if (!response.ok) {
     throw new Error(json.message || `Error del servidor (${response.status})`)
   }
@@ -32,6 +32,26 @@ export async function createRoutine(params: any) {
   return json
 }
 
+export async function deleteRoutine(id: any) {
+    const xsrfToken = getCookie('XSRF-TOKEN')
+
+    const response = await fetch(`/api/routines/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-XSRF-TOKEN': xsrfToken
+        }
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+        throw new Error(json.message || `Error del servidor (${response.status})`)
+    }
+
+    return json
+}
 
 // mostrarEjerciciosRutina(codR, name, userName, desc) {
 

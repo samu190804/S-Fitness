@@ -46,8 +46,8 @@ const handleFilterApplied = (data: any, typeF: number) => {
             <p class="descripcionR">{{ descripcion }}</p>
 
             <div class="row">
-                <Exercises :exercises="query" v-if="!type" />
-                <Routines :routines="query" v-else />
+                <Exercises :exercises="query" @deleted="(id) => query = query.filter(e => e.CodE !== id)" v-if="!type" />
+                <Routines :routines="query" @deleted="(id) => query = query.filter(r => r.CodR !== id)" v-else />
             </div>
         </div>
     </main>

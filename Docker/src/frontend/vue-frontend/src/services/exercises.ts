@@ -60,6 +60,27 @@ export async function createExer(params: any) {
   return json
 }
 
+export async function deleteExer(id: any) {
+    const xsrfToken = getCookie('XSRF-TOKEN')
+
+    const response = await fetch(`/api/exercises/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-XSRF-TOKEN': xsrfToken
+        }
+    })
+    const json = await response.json()
+
+    if (!response.ok) {
+        throw new Error(json.message || `Error del servidor (${response.status})`)
+    }
+
+    return json
+}
+
 export function getEmbedUrl(url: string): string {
   if (!url) return ''
   // Convierte watch?v=ID a embed/ID

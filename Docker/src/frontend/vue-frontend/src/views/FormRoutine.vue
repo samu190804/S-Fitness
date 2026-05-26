@@ -59,7 +59,7 @@ const create = async () => {
         const result = await createRoutine(params)
         console.log(result)
         if (result.success) {
-            success.value = 'Ejercicio Creado'
+            success.value = 'Rutina Creada'
             console.log("Creado")
         }
     } catch (e: any) {

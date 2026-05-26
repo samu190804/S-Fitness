@@ -41,7 +41,6 @@ const emit = defineEmits<{
 
 const applyFilters = async () => {
     try {
-        console.log(params, type)
         const data = await fetchFilter(params, type.value)
         emit('filter-applied', data, type.value)
     } catch (error) {
