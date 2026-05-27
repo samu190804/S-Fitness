@@ -64,7 +64,6 @@ export async function uploadPhoto(photo: File): Promise<string | null> {
         },
         body: formData
     })
-    console.log(response)
     const json = await response.json()
     if (!response.ok || !json.uploadOk) return null
     return json.path  // devuelve la ruta para guardarla en el usuario
@@ -92,7 +91,6 @@ export async function updateUser(params: any) {
         },
         body: JSON.stringify(body)
     })
-    console.log(response)
     const json = await response.json()
     if (!response.ok) {
         throw new Error(json.message || `Error del servidor (${response.status})`)

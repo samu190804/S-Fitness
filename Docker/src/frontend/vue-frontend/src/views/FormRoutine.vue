@@ -57,7 +57,6 @@ const create = async () => {
     params.ejercicios = selectedExercises.value.map(e => e.CodE)
     try {
         const result = await createRoutine(params)
-        console.log(result)
         if (result.success) {
             success.value = 'Rutina Creada'
             console.log("Creado")

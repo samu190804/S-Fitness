@@ -3,6 +3,7 @@ import Section from '@/components/common/Section.vue'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
+import { uploadPhoto } from '@/services/Signin'
 
 const router = useRouter()
 const auth = useAuthStore()
@@ -11,19 +12,32 @@ const section = 'Actualizar Usuario'
 const info = ''
 const error = ref('')
 
+const photo = ref<File | null>(null)
+
+const onPhotoChange = (e: Event) => {
+    const input = e.target as HTMLInputElement
+    photo.value = input.files?.[0] ?? null
+}
+
 const params = reactive({
     name: auth.user?.Name ?? '',
     userName: auth.user?.UserName ?? '',
     email: auth.user?.Email ?? '',
-    password: ''
+    password: '',
+    Img: ''
 })
 
 const update = async () => {
     error.value = ''
     try {
+        if (photo.value) {
+            const path = await uploadPhoto(photo.value)
+            if (path) {
+                params.Img = path
+            }
+        }
         const result = await auth.updateUser(params)
         if (result.success) {
-            console.log(result)
             router.push('/')
         }
     } catch (e: any) {
@@ -40,8 +54,8 @@ const update = async () => {
                 <!-- <h4 class="text-center">{{ resultado }}</h4> -->
                 <form @submit.prevent="update" class="row g-3 mx-auto" style="max-width: 500px;">
                     <div class="form-floating col-12">
-                        <input type="text" max=50 class="form-control" id="floatingName"
-                            placeholder="Nombre completo" v-model="params.name">
+                        <input type="text" max=50 class="form-control" id="floatingName" placeholder="Nombre completo"
+                            v-model="params.name">
                         <label for="floatingName">Nombre completo</label>
                     </div>
                     <div class="form-floating col-12">
@@ -55,13 +69,14 @@ const update = async () => {
                         <label for="floatingEmail">Email</label>
                     </div>
                     <div class="form-floating col-12">
-                        <input required type="password" min=8 class="form-control" id="floatingPassword"
+                        <input type="password" min=8 class="form-control" id="floatingPassword"
                             placeholder="Contraseña" v-model="params.password">
-                        <label for="floatingPassword">Contraseña</label>
+                        <label for="floatingPassword">Nueva contraseña (opcional)</label>
                     </div>
                     <div class="col-12">
                         <label for="profileImage" class="form-label">Imagen de perfil</label>
-                        <input class="form-control" type="file" name="foto" id="profileImage" @change="">
+                        <input class="form-control" type="file" accept="image/*" id="profileImage"
+                            @change="onPhotoChange">
                     </div>
                     <p v-if="error" class="text-danger text-center">{{ error }}</p>
                     <div class="col-12 d-flex justify-content-center">

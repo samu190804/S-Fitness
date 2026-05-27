@@ -24,7 +24,6 @@ const create = async () => {
     error.value = ''
     try {
         const result = await createExer(params) 
-        console.log(result)
         if (result.success) {
             success.value = 'Ejercicio Creado'
             console.log("Creado")

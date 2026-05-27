@@ -24,7 +24,6 @@ export async function createRoutine(params: any) {
     body: data
   })
   const json = await response.json()
-  console.log(json)
   if (!response.ok) {
     throw new Error(json.message || `Error del servidor (${response.status})`)
   }
