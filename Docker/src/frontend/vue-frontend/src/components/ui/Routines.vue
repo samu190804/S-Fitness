@@ -36,7 +36,9 @@ const delRoutine = async (id: number) => {
                 <h3 class="card-title">{{ routine.Name }}</h3>
                 <h6 class="card-title text-muted">
                     Creador: {{ routine.usuario.UserName }}
-                    <img :src="'Php/' + routine.usuario.Img" class="rounded-circle imgPerfil" />
+                    <img :src="routine.usuario.Img
+                                ? `/storage/${routine.usuario.Img}`
+                                : '/defaultPicture.png'" class="rounded-circle imgPerfil" />
                 </h6>
             </div>
             <ul class="list-group list-group-flush">
@@ -80,3 +82,11 @@ const delRoutine = async (id: number) => {
         </div>
     </div>
 </template>
+
+<style scoped>
+.imgPerfil {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+</style>

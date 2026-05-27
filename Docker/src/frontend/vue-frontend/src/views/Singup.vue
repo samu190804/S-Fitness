@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Section from '@/components/common/Section.vue'
-import { registerUser } from '@/services/Signin'
+import { registerUser, uploadPhoto } from '@/services/Signin'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
@@ -13,30 +13,46 @@ const info = '¡Regístrate y comparte conocimiento!'
 const error = ref('')
 const success = ref('')
 
+const photo = ref<File | null>(null)
+
+const onPhotoChange = (e: Event) => {
+    const input = e.target as HTMLInputElement
+    photo.value = input.files?.[0] ?? null
+}
+
 const params = reactive({
     name: '',
     userName: '',
     email: '',
-    password: ''
+    password: '',
+    Img: ''
 })
 
 const register = async () => {
     error.value = ''
     try {
-        const create = await registerUser(params)
-        
-        if (create.success){
-            success.value = "Usuario creado"
-        }
-        
-        const result = await auth.login({
-            email: params.email,
-            password: params.password
-        })
+        // 1. Registrar
+        await registerUser(params)
 
-        if (result.success) {
-            router.push('/')
+        // 2. Login
+        const result = await auth.login({ email: params.email, password: params.password })
+
+        // 3. Subir foto si hay (ya autenticado)
+        if (result.success && photo.value) {
+            const path = await uploadPhoto(photo.value)
+            if (path) {
+                await auth.updateUser({
+                    name: auth.user?.Name ?? '',
+                    userName: auth.user?.UserName ?? '',
+                    email: auth.user?.Email ?? '',
+                    password: '',
+                    Img: path
+                })
+            }
         }
+
+        if (result.success) router.push('/')
+
     } catch (e: any) {
         error.value = e.message || 'Error al registrar el usuario'
     }
@@ -70,10 +86,11 @@ const register = async () => {
                             placeholder="Contraseña" v-model="params.password">
                         <label for="floatingPassword">Contraseña</label>
                     </div>
-                    <!-- <div class="col-12">
+                    <div class="col-12">
                         <label for="profileImage" class="form-label">Imagen de perfil</label>
-                        <input class="form-control" type="file" name="foto" id="profileImage" @change="">
-                    </div> -->
+                        <input class="form-control" type="file" accept="image/*" id="profileImage"
+                            @change="onPhotoChange">
+                    </div>
                     <p v-if="success" class="text-success text-center">{{ success }}</p>
                     <p v-if="error" class="text-danger text-center">{{ error }}</p>
                     <div class="col-12 d-flex justify-content-center">

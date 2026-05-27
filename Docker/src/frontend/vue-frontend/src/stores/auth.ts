@@ -21,6 +21,7 @@ interface UpdateUserParams {
     userName: string
     email: string
     password: string
+    Img: string | null
 }
 
 export const useAuthStore = defineStore('auth', () => {
@@ -80,7 +81,18 @@ export const useAuthStore = defineStore('auth', () => {
     }
 
     async function updateUser(params: UpdateUserParams): Promise<{ success: boolean; message?: string }> {
+        await initCsrf()
         const xsrfToken = getCookie('XSRF-TOKEN')
+
+        const body: any = {
+            Name: params.name,
+            UserName: params.userName,
+            Email: params.email,
+        }
+
+        if (params.password) body.Password = params.password
+        if (params.Img) body.Img = params.Img
+
         const res = await fetch(`/api/users/${user.value?.CodU}`, {
             method: 'PUT',
             credentials: 'include',
@@ -89,18 +101,12 @@ export const useAuthStore = defineStore('auth', () => {
                 'Accept': 'application/json',
                 'X-XSRF-TOKEN': xsrfToken
             },
-            body: JSON.stringify({
-                Name: params.name,
-                UserName: params.userName,
-                Email: params.email,
-                Password: params.password,
-            })
+            body: JSON.stringify(body)
         })
         const json = await res.json()
         if (!res.ok) {
             throw new Error(json.message || `Error del servidor (${res.status})`)
         }
-        // Actualiza el store con los nuevos datos
         if (json.success) {
             user.value = json.data
         }

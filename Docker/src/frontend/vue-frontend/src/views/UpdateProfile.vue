@@ -59,10 +59,10 @@ const update = async () => {
                             placeholder="Contraseña" v-model="params.password">
                         <label for="floatingPassword">Contraseña</label>
                     </div>
-                    <!-- <div class="col-12">
+                    <div class="col-12">
                         <label for="profileImage" class="form-label">Imagen de perfil</label>
                         <input class="form-control" type="file" name="foto" id="profileImage" @change="">
-                    </div> -->
+                    </div>
                     <p v-if="error" class="text-danger text-center">{{ error }}</p>
                     <div class="col-12 d-flex justify-content-center">
                         <button type="submit" class="btn btn-success">Actualizar</button>

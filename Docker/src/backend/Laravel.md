@@ -12,4 +12,7 @@ sudo docker exec -it php_app php artisan migrate
 
 docker exec -it php_app php artisan route:list
 
-docker exec -it php_app grep sanctum   
+docker exec -it php_app grep sanctum
+
+docker exec -it php_app php artisan storage:link 
+<!-- crear enlace simbolico -->

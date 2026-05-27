@@ -51,6 +51,10 @@
     ```bash
         sudo docker exec -it php_app php artisan make:request StoreUserRequest
     ```
+* Crea enalce simbolico storage
+    ```bash
+        sudo docker exec -it php_app php artisan storage:link
+    ```
 ## 1. Servicios
 
 ### 1.1 PHPMyAdmin

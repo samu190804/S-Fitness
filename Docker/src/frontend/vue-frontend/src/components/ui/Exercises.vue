@@ -38,7 +38,9 @@ const delExer = async (id: number) => {
             <div class="card-body">
                 <h5 class="card-title">{{ exer.Name }}</h5>
                 <h6 class="card-title">Creador: {{ exer.usuario.UserName }}
-                    <img :src="'Php/' + exer.usuario.Img" class="rounded-circle imgPerfil" />
+                    <img :src="exer.usuario.Img
+                        ? `/storage/${exer.usuario.Img}`
+                        : '/defaultPicture.png'" class="rounded-circle imgPerfil" />
                 </h6>
                 <p class="card-text">{{ exer.Descripcion }}</p>
             </div>
@@ -69,3 +71,11 @@ const delExer = async (id: number) => {
     </div>
 
 </template>
+
+<style scoped>
+.imgPerfil {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+</style>
