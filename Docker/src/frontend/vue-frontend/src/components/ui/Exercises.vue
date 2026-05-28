@@ -48,7 +48,7 @@ const delExer = async (id: number) => {
                 <li class="list-group-item">Número de Series: {{ exer.Series }}</li>
                 <li class="list-group-item">Número de Repeticiones: {{ exer.Repeticiones }}</li>
                 <li class="list-group-item">Músculo: {{ exer.Musculo }}</li>
-                <li v-if="auth.user?.CodU == exer.CodU || auth.user?.admin == true" class="list-group-item p-0">
+                <li v-if="(auth.user?.CodU == exer.CodU || auth.user?.admin == true) && $route.path === '/ownContent'" class="list-group-item p-0">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">

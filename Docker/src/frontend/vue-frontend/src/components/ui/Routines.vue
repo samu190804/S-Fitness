@@ -11,7 +11,8 @@ const props = defineProps<Props>()
 const auth = useAuthStore()
 
 const emit = defineEmits<{
-    'deleted': [id: number]
+    'deleted': [id: number],
+    'showExer': [id: number, rName: string, userName: string]
 }>()
 
 const delRoutine = async (id: number) => {
@@ -27,6 +28,10 @@ const delRoutine = async (id: number) => {
         }
     }
 }
+
+const showExer = async (id: number, rName: string, userName: string) => {
+    emit('showExer', id, rName, userName)
+}
 </script>
 
 <template>
@@ -37,8 +42,8 @@ const delRoutine = async (id: number) => {
                 <h6 class="card-title text-muted">
                     Creador: {{ routine.usuario.UserName }}
                     <img :src="routine.usuario.Img
-                                ? `/storage/${routine.usuario.Img}`
-                                : '/defaultPicture.png'" class="rounded-circle imgPerfil" />
+                        ? `/storage/${routine.usuario.Img}`
+                        : '/defaultPicture.png'" class="rounded-circle imgPerfil" />
                 </h6>
             </div>
             <ul class="list-group list-group-flush">
@@ -60,7 +65,12 @@ const delRoutine = async (id: number) => {
                         <span class="ms-3 text-muted small">{{ routine.Nivel }}/5</span>
                     </div>
                 </li>
-                <li v-if="auth.user?.CodU == routine.CodU || auth.user?.admin" class="list-group-item p-0">
+                <li class="list-group-item py-3 d-flex justify-content-center">
+                    <button @click="showExer(routine.CodR, routine.Name, routine.usuario.UserName)"
+                        class="btn btn-success indexbtn" role="button">Ver Ejercicios</button>
+                </li>
+                <li v-if="(auth.user?.CodU == routine.CodU || auth.user?.admin) && $route.path === '/ownContent'"
+                    class="list-group-item p-0">
                     <div class="accordion" id="accordionExample">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">

@@ -5,6 +5,7 @@ import Routines from '@/components/ui/Routines.vue'
 import FilterQuery from '@/components/ui/FilterQuery.vue'
 import { onMounted, ref } from 'vue'
 import { fetchExercises } from '@/services/exercises'
+import { exercisesfrRoutine } from '@/services/routines'
 
 const section = 'En esta sección podrás ver todos los ejercicios y rutinas.'
 const info = '¡Echa un vistazo!'
@@ -32,6 +33,18 @@ const handleFilterApplied = (data: any, typeF: number) => {
     descripcion.value = ''
     type.value = typeF
 }
+
+const showExerfrRoutine = async (id: number, rName: string, userName: string) => {
+    try {
+        let json = await exercisesfrRoutine(id)
+        query.value = json.data
+        type.value = 0
+        resultado.value = `Viendo ejercicios de ${rName}, de: ${userName}`;
+    } catch (error) {
+        resultado.value = `Sin Resultados`;
+        console.error(error);
+    }
+}
 </script>
 
 <template>
@@ -44,7 +57,7 @@ const handleFilterApplied = (data: any, typeF: number) => {
 
             <div class="row">
                 <Exercises :exercises="query" v-if="!type"/>
-                <Routines :routines="query" v-else/>
+                <Routines @showExer="showExerfrRoutine" :routines="query" v-else/>
             </div>
         </div>
     </main>

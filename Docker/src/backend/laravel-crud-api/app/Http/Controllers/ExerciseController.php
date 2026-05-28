@@ -142,7 +142,7 @@ class ExerciseController extends Controller
      */
     public function ejerciciosDeRutina($codR) 
     {
-        $ejercicios = Exercise::query()
+        $ejercicios = Exercise::with('usuario')->select('exercises.*')
             ->join('users', 'users.CodU', '=', 'exercises.CodU')
             ->join('routines_exercises', 'routines_exercises.CodE', '=', 'exercises.CodE')
             ->where('routines_exercises.CodR', $codR)

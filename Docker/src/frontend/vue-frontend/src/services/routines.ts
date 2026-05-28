@@ -12,7 +12,7 @@ export async function createRoutine(params: any) {
     Descripcion: params.Descripcion,
     CodU: params.CodU,
     ejercicios: params.ejercicios
-})
+  })
 
   const response = await fetch('/api/routines', {
     method: 'POST',
@@ -32,54 +32,31 @@ export async function createRoutine(params: any) {
 }
 
 export async function deleteRoutine(id: any) {
-    const xsrfToken = getCookie('XSRF-TOKEN')
+  const xsrfToken = getCookie('XSRF-TOKEN')
 
-    const response = await fetch(`/api/routines/${id}`, {
-        method: 'DELETE',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-            'X-XSRF-TOKEN': xsrfToken
-        }
-    })
-    const json = await response.json()
-
-    if (!response.ok) {
-        throw new Error(json.message || `Error del servidor (${response.status})`)
+  const response = await fetch(`/api/routines/${id}`, {
+    method: 'DELETE',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'X-XSRF-TOKEN': xsrfToken
     }
+  })
+  const json = await response.json()
 
-    return json
+  if (!response.ok) {
+    throw new Error(json.message || `Error del servidor (${response.status})`)
+  }
+
+  return json
 }
 
-// mostrarEjerciciosRutina(codR, name, userName, desc) {
-
-//     app.tipo = "Ejercicios";
-//     app.resultado = "Estas viendo una rutina de '" + userName + "'. Nombre: " + name + ".";
-//     app.descripcion = "Descripción: " + desc;
-
-//     fetch('Php/EjerciciosDeRutina.php', {
-//         method: 'POST', // Método POST
-//         headers: {
-//             'Content-Type': 'application/json' // Tipo de contenido JSON
-//         },
-//         body: JSON.stringify(codR)
-//     })
-//         .then(response => {
-//             if (!response.ok) {
-//                 app.resultado = 'Error en la respuesta del servidor';
-//                 throw new Error('Error en la respuesta del servidor');
-//             }
-//             //console.log(response.text());
-//             return response.json();
-//         })
-//         .then(json => {
-
-//             this.ejercicios = json;
-
-//         })
-//         .catch(error => {
-//             app.resultado = "Sin resultados";
-//             console.error('Error al obtener los datos:', error)
-//         });
-// }
+export async function exercisesfrRoutine(id: any) {
+  const response = await fetch(`/api/exercises/routine/${id}`, {
+    method: 'GET',
+  })
+  console.log(response)
+  if (!response.ok) throw new Error('Error en la respuesta del servidor');
+  return await response.json()
+}
