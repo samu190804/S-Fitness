@@ -77,3 +77,43 @@ El esquema se sostiene sobre cuatro entidades de negocio principales y una de se
 El siguiente diagrama detalla el mapa conceptual estructural entre los usuarios y el contenido generado. Ilustra gráficamente cómo las entidades clave se relacionan entre sí garantizando la trazabilidad de la autoría y la consistencia de los entrenamientos modulares:
 
 ![Diagrama Entidad-Relación](Esquemas/Entidad%20relaci%C3%B3n.jpg)
+
+## Vista previa
+
+La aplicacción incluye múltiples secciones:
+
+* Home
+* Sign In y Log in
+* Buscador de Ejercicios y Rutinas
+* Creador de Ejercicios y Rutinas
+
+Capturas de pantalla de la pagina web
+
+## 5. Capturas de ejemplo
+
+A continuación hay algunas capturas de pantalla tomadas de la aplicación (carpeta `screenshots/`):
+
+- **Home:**
+
+   ![Home](screenshots/home.png)
+
+- **Listado de rutinas:**
+
+   ![Rutinas](screenshots/rutinas.png)
+
+- **Página de ejercicio:**
+
+   ![Ejercicio](screenshots/ejer.png)
+
+- **Crear ejercicio (creador):**
+
+   ![Creador de ejercicio](screenshots/CreadorEjer.png)
+
+- **Crear rutina (creador):**
+
+   ![Creador de rutinas](screenshots/CreadorRutinas.png)
+
+- **Login / Actualizar usuario:**
+
+   ![Login / Perfil](screenshots/login.png)
+
